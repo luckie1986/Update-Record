@@ -1,0 +1,33 @@
+public class UpdateRecordsTaskSix {
+    
+        //create a new method updateContact
+    public static List<Contact> updateContact(){     
+       
+        List<Contact> conList = [SELECT Id, Prior_Qualification__c FROM Contact];
+        
+        List<Contact> UpdateContactList = new List<Contact>();
+            
+         for(Contact con:conList) {
+            
+             if(con.Prior_Qualification__c == 'Below Tertiary'){        
+                con.Enrolment_Progression__c = 'Advanced';
+                UpdateContactList.add(con);
+            }
+             if(con.Prior_Qualification__c == 'Tertiary Graduate'){
+                con.Enrolment_Progression__c = 'Ultimate';
+                UpdateContactList.add(con);
+            }
+             if(con.Prior_Qualification__c == 'Tertiary Post-Graduate'){
+                con.Enrolment_Progression__c = 'Extra';
+                UpdateContactList.add(con);
+            }
+          
+         }      
+            
+          //Update
+                update UpdateContactList;
+                return UpdateContactList;
+        }
+
+
+}
